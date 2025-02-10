@@ -7,7 +7,7 @@ fn main() {
     let p_in: Option<f32> = input("Pressure").ok();
     let v_in: Option<f32> = input("Volume (L)").ok();
     let n_in: Option<f32> = input("Particles (mol)").ok();
-    let r_select: usize = input("R (0 for atm, 1 for torr)").unwrap();
+    let r_select: usize = input("R (0 for atm, 1 for torr)").expect("expected integer input");
     let (r, unit) = match r_select {
         0 => (R_ATM, "atm"),
         1 => (R_TORR, "torr"),
@@ -29,9 +29,9 @@ fn main() {
 
 fn input<T: FromStr>(prompt: &str) -> Result<T, T::Err> {
     print!("{prompt}: ");
-    io::stdout().flush().unwrap();
+    io::stdout().flush().expect("should be able to flush `stdout`");
 
     let mut ret = String::new();
-    io::stdin().read_line(&mut ret).unwrap();
+    io::stdin().read_line(&mut ret).expect("should be able to read line from `stdin`");
     return ret.trim().parse();
 }
