@@ -23,6 +23,7 @@ fn main() {
         (Some(p), None, Some(n), Some(t)) => println!("Volume: {} L", n*r*t/p),
         (Some(p), Some(v), None, Some(t)) => println!("Particles: {} mol", p*v/r/t),
         (Some(p), Some(v), Some(n), None) => println!("Temperature: {} K", p*v/n/r),
+        (Some(p), None, None, Some(t)) => println!("Density: {} mol/L", p/r/t),
         _ => panic!("Must only be missing one input!"),
     }
 }
